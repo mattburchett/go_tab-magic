@@ -1,0 +1,5 @@
+{
+    "resolver": "172.19.0.5",
+    "resolverPort": 53,
+    "domains": [ "kc.linuxrocker.com"]
+}

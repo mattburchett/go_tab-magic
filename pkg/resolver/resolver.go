@@ -1,12 +1,14 @@
 package resolver
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"log"
 	"strings"
 
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
+	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/model"
 	"github.com/miekg/dns"
 )
 
@@ -66,24 +68,27 @@ func PerformZoneTransfer(config config.Config) {
 				default:
 					continue
 				}
-				// data = append(data, fmt.Sprintf("%v %v %v\n", strings.TrimRight(hostname, "."), ip, txt))
-
-				for _, i := range data {
-					checkval := fmt.Sprintf("%v %v ", strings.TrimRight(hostname, "."), ip)
-					fmt.Printf("CheckVal: %v", checkval)
-					actualval := fmt.Sprintf("%v %v %v", strings.TrimRight(hostname, "."), ip, txt)
-					fmt.Printf("ActualVal: %v", actualval)
-					if i == checkval {
-						if i != actualval {
-							i = actualval
-						}
-
-					} else {
-						data = append(data, fmt.Sprintf("%v %v %v\n", strings.TrimRight(hostname, "."), ip, txt))
-					}
-				}
+				data = append(data, fmt.Sprintf("%v %v %v\n", strings.TrimRight(hostname, "."), ip, txt))
 			}
 		}
 	}
 	fmt.Println(data)
+	resultsToJSON(data)
+}
+
+func resultsToJSON(data []string) {
+	for _, i := range data {
+		splitStrings := strings.Split(i, " ")
+		hostname := splitStrings[1]
+		ip := splitStrings[2]
+		txt := splitStrings[3]
+		dns := &model.Results{IP: ip, Hostname: hostname, TXT: txt}
+		b, err := json.Marshal(dns)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
+
+	}
+
 }

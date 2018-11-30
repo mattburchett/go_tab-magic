@@ -79,10 +79,10 @@ func PerformZoneTransfer(config config.Config) {
 func resultsToJSON(data []string) {
 	for _, i := range data {
 		splitStrings := strings.Split(i, " ")
-		hostname := splitStrings[1]
-		ip := splitStrings[2]
-		// txt := splitStrings[3]
-		dns := &model.Results{IP: ip, Hostname: hostname}
+		hostname := splitStrings[0]
+		ip := splitStrings[1]
+		txt := splitStrings[2]
+		dns := &model.Results{IP: ip, Hostname: hostname, TXT: txt}
 		b, err := json.Marshal(dns)
 		if err != nil {
 			fmt.Println(err)

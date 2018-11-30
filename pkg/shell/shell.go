@@ -32,9 +32,9 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 		message := fmt.Sprintf("%vecho \"Authenticating as: %v\";%v", greentext, remoteUser, resettext)
 
 		if txt == "" {
-			fmt.Printf("alias %v=\\'%v%v%v %v@%v \"%v %v %v %v %v\"'", host, message, prerac, hop, username, jump, rac, racOpts, remoteUser, fqdn, sudo)
+			fmt.Printf("alias %v=\\'%v%v%v %v@%v \"%v %v %v %v %v\"'\n", host, message, prerac, hop, username, jump, rac, racOpts, remoteUser, fqdn, sudo)
 		} else {
-			fmt.Printf("alias %v=\\'%v%v%v %v@%v \"%v %v %v %v %v\"'", host, message, prerac, hop, username, jump, rac, racOpts, remoteUser, fqdn, sudo)
+			fmt.Printf("alias %v=\\'%v%v%v %v@%v \"%v %v %v %v %v\"'\n", host, message, prerac, hop, username, jump, rac, racOpts, remoteUser, fqdn, sudo)
 		}
 	}
 }

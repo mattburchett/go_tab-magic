@@ -72,7 +72,7 @@ func PerformZoneTransfer(config config.Config) []string {
 			}
 		}
 	}
-	fmt.Println(data)
+	// fmt.Println(data)
 	// resultsToJSON(data)
 
 	return data

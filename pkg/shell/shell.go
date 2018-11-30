@@ -24,7 +24,7 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 		prerac := ""
 
 		host := strings.TrimRight(hostname, stringSplit)
-		fqdn := strings.TrimLeft(hostname, stringSplit)
+		fqdn := hostname
 
 		greentext := "tput -T xterm setaf 2; "
 		// redtext := "tput -T xterm setaf 1; "

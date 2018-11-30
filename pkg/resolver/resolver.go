@@ -30,7 +30,7 @@ func lookupName(fqdn, serverAddr string) (string, error) {
 	return "", errors.New("no A record returned")
 }
 
-func PerformZoneTransfer(config config.Config) {
+func PerformZoneTransfer(config config.Config) []string {
 	data := make([]string, 0)
 
 	// Do the transfer
@@ -73,10 +73,13 @@ func PerformZoneTransfer(config config.Config) {
 		}
 	}
 	fmt.Println(data)
-	resultsToJSON(data)
+	// resultsToJSON(data)
+
+	return data
 }
 
 func resultsToJSON(data []string) {
+	jsonData := make([][]byte, 0)
 	for _, i := range data {
 		splitStrings := strings.Split(i, " ")
 		hostname := splitStrings[0]
@@ -87,7 +90,7 @@ func resultsToJSON(data []string) {
 		if err != nil {
 			fmt.Println(err)
 		}
-		fmt.Println(string(b))
+		jsonData = append(jsonData, b)
 
 	}
 

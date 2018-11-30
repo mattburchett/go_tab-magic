@@ -6,13 +6,16 @@ import (
 
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/resolver"
+	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/shell"
 )
 
 func main() {
 	var c string
+	var user string
 	var debug bool
 
 	flag.StringVar(&c, "config", "", "Configuration to load")
+	flag.StringVar(&user, "user", "", "user for aliases")
 	flag.BoolVar(&debug, "debug", false, "Enables Debugging Mode")
 	flag.Parse()
 
@@ -21,10 +24,15 @@ func main() {
 		log.Fatal("You need to specify a configuration file.")
 	}
 
+	if user == "" {
+		log.Fatal("Username is not specified.")
+	}
+
 	cfg, err := config.GetConfig(c, debug)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	resolver.PerformZoneTransfer(cfg)
+	data := resolver.PerformZoneTransfer(cfg)
+	shell.CreateShellAliases(data, user, cfg)
 }

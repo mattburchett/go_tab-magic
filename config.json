@@ -1,5 +1,7 @@
 {
     "resolver": "172.19.0.5",
     "resolverPort": 53,
-    "domains": [ "kc.linuxrocker.com"]
+    "domains": [ "kc.linuxrocker.com"],
+    "jumpHost": "jump01.kc.linuxrocker.com",
+    "splitString": ".linuxrocker"
 }

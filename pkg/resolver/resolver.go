@@ -68,7 +68,7 @@ func PerformZoneTransfer(config config.Config) {
 				default:
 					continue
 				}
-				data = append(data, fmt.Sprintf("%v %v %v\n", strings.TrimRight(hostname, "."), ip, txt))
+				data = append(data, fmt.Sprintf("%v %v %v", strings.TrimRight(hostname, "."), ip, txt))
 			}
 		}
 	}

@@ -81,8 +81,8 @@ func resultsToJSON(data []string) {
 		splitStrings := strings.Split(i, " ")
 		hostname := splitStrings[1]
 		ip := splitStrings[2]
-		txt := splitStrings[3]
-		dns := &model.Results{IP: ip, Hostname: hostname, TXT: txt}
+		// txt := splitStrings[3]
+		dns := &model.Results{IP: ip, Hostname: hostname}
 		b, err := json.Marshal(dns)
 		if err != nil {
 			fmt.Println(err)

@@ -70,7 +70,9 @@ func PerformZoneTransfer(config config.Config) {
 
 				for _, i := range data {
 					checkval := fmt.Sprintf("%v %v ", strings.TrimRight(hostname, "."), ip)
+					fmt.Printf("CheckVal: %v", checkval)
 					actualval := fmt.Sprintf("%v %v %v", strings.TrimRight(hostname, "."), ip, txt)
+					fmt.Printf("ActualVal: %v", actualval)
 					if i == checkval {
 						if i != actualval {
 							i = actualval

@@ -66,7 +66,20 @@ func PerformZoneTransfer(config config.Config) {
 				default:
 					continue
 				}
-				data = append(data, fmt.Sprintf("%v %v %v\n", hostname, ip, txt))
+				// data = append(data, fmt.Sprintf("%v %v %v\n", strings.TrimRight(hostname, "."), ip, txt))
+
+				for _, i := range data {
+					checkval := fmt.Sprintf("%v %v ", strings.TrimRight(hostname, "."), ip)
+					actualval := fmt.Sprintf("%v %v %v", strings.TrimRight(hostname, "."), ip, txt)
+					if i == checkval {
+						if i != actualval {
+							i = actualval
+						}
+
+					} else {
+						data = append(data, fmt.Sprintf("%v %v %v\n", strings.TrimRight(hostname, "."), ip, txt))
+					}
+				}
 			}
 		}
 	}

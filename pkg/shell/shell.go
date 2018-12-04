@@ -45,6 +45,8 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 				if osFamily[1] == "ESXi" {
 					sudo = ""
 					remoteUser = "root"
+				} else if osFamily[1] == "Ubiquiti" {
+					sudo = ""
 				} else if osFamily[1] == "Windows" {
 					prerac = fmt.Sprintf("%vecho \"Password: \"; %v", redtext, resettext)
 					hop = "ssh -XCAT"

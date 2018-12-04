@@ -53,6 +53,9 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 					racOpts = fmt.Sprintf("-r clipboard:CLIPBOARD -a 16 -k en-us -g %v -p - %v -u", windowsGeometry, windowsDomain)
 					sudo = ""
 				}
+			} else if strings.Contains(i, "REMOTE_USER") {
+				user := strings.TrimLeft(i, "REMOTE_USER=")
+				remoteUser = user
 			}
 		}
 

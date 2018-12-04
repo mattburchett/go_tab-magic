@@ -39,7 +39,7 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 		for _, i := range txtSplit {
 			if strings.Contains(i, "SSH_PORT") {
 				port := strings.TrimLeft(i, "SSH_PORT=")
-				racOpts = fmt.Sprintf("ssh -AXt -p %v -l", port)
+				racOpts = fmt.Sprintf("-AXt -p %v -l", port)
 			} else if strings.Contains(i, "OS_FAMILY") {
 				osFamily := strings.Split(i, "=")
 				if osFamily[1] == "ESXi" {

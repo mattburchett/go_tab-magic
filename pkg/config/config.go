@@ -9,11 +9,12 @@ import (
 
 // Config - This struct will hold configuration components.
 type Config struct {
-	Resolver     string   `json:"resolver"`
-	ResolverPort int      `json:"resolverPort"`
-	Domains      []string `json:"domains"`
-	JumpHost     string   `json:"jumpHost"`
-	SplitString  string   `json:"splitString"`
+	Resolver        string   `json:"resolver"`
+	ResolverPort    int      `json:"resolverPort"`
+	Domains         []string `json:"domains"`
+	JumpHost        string   `json:"jumpHost"`
+	SplitString     string   `json:"splitString"`
+	WindowsGeometry string   `json:"windowsGeometry"`
 }
 
 //GetConfig gets the configuration values for the api using the file in the supplied configPath.

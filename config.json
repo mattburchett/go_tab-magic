@@ -3,5 +3,6 @@
     "resolverPort": 53,
     "domains": [ "kc.linuxrocker.com"],
     "jumpHost": "jump01.kc.linuxrocker.com",
-    "splitString": ".linuxrocker"
+    "splitString": ".linuxrocker",
+    "windowsGeometry": "1600x900"
 }

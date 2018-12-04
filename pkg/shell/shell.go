@@ -33,21 +33,26 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 		message := fmt.Sprintf("%vecho \"Authenticating as: %v\";%v", greentext, remoteUser, resettext)
 
 		// TXT Record Parsing
-		if strings.Contains(txt, "SSH_PORT") {
-			port := strings.TrimLeft(txt, "SSH_PORT=")
-			racOpts = fmt.Sprintf("ssh -AXt -p %v -l", port)
-		} else if strings.Contains(txt, "OS_FAMILY") {
-			osFamily := strings.Split(txt, "=")
-			if osFamily[1] == "ESXi" {
-				sudo = ""
-				remoteUser = "root"
-			} else if osFamily[1] == "Windows" {
-				prerac = fmt.Sprintf("%vecho \"Password: \"; %v", redtext, resettext)
-				hop = "ssh -XCAT"
-				rac = "rdesktop"
-				windowsDomain := ""
-				racOpts = fmt.Sprintf("-r clipboard:CLIPBOARD -a 16 -k en-us -g %v -p - %v -u", windowsGeometry, windowsDomain)
-				sudo = ""
+
+		txtSplit := strings.Split(txt, ";")
+
+		for _, i := range txtSplit {
+			if strings.Contains(i, "SSH_PORT") {
+				port := strings.TrimLeft(i, "SSH_PORT=")
+				racOpts = fmt.Sprintf("ssh -AXt -p %v -l", port)
+			} else if strings.Contains(i, "OS_FAMILY") {
+				osFamily := strings.Split(i, "=")
+				if osFamily[1] == "ESXi" {
+					sudo = ""
+					remoteUser = "root"
+				} else if osFamily[1] == "Windows" {
+					prerac = fmt.Sprintf("%vecho \"Password: \"; %v", redtext, resettext)
+					hop = "ssh -XCAT"
+					rac = "rdesktop"
+					windowsDomain := ""
+					racOpts = fmt.Sprintf("-r clipboard:CLIPBOARD -a 16 -k en-us -g %v -p - %v -u", windowsGeometry, windowsDomain)
+					sudo = ""
+				}
 			}
 		}
 

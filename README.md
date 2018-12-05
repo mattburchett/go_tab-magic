@@ -12,6 +12,7 @@ You will need to create a config.json with your information in it:
     "resolverPort": 53,
     "domains": [ "kc.linuxrocker.com"],
     "jumpHost": "jump01.kc.linuxrocker.com",
+    "useJump": false,
     "splitString": ".linuxrocker",
     "windowsGeometry": "1600x900"
 }

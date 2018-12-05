@@ -21,4 +21,4 @@ For Tab_Magic to do proper host detection, The following TXT record options are 
 
 * SSH_PORT - SSH Port will allow you to specify a custom SSH Port for the remote host. Valid: 1-65536
 * OS_FAMILY - Can be either "ESXi", "Ubiquiti", or "Windows". If ESXi, it will log in as root with no sudo opts. If Ubiquiti, it will not use sudo. If Windows, it will use the rdesktop command line tool.
-* REMOTE_USER - This is not implemented yet, but you will be able to specify a custom username for the remote host.
+* REMOTE_USER - You will be able to specify a custom username for the remote host.

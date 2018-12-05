@@ -13,6 +13,7 @@ type Config struct {
 	ResolverPort    int      `json:"resolverPort"`
 	Domains         []string `json:"domains"`
 	JumpHost        string   `json:"jumpHost"`
+	UseJump         bool     `json:"useJump"`
 	SplitString     string   `json:"splitString"`
 	WindowsGeometry string   `json:"windowsGeometry"`
 }

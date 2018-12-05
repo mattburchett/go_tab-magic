@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"os"
 
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/resolver"
@@ -25,7 +26,7 @@ func main() {
 	}
 
 	if user == "" {
-		log.Fatal("Username is not specified.")
+		user = os.Getenv("USER")
 	}
 
 	cfg, err := config.GetConfig(c, debug)

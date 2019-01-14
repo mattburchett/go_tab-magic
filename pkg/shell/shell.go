@@ -7,6 +7,7 @@ import (
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
 )
 
+// CreateShellAliases will create shell aliases and fmt.Println them
 func CreateShellAliases(data []string, username string, config config.Config) {
 	for _, i := range data {
 		splitStrings := strings.Split(i, " ")
@@ -40,7 +41,7 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 
 		for _, i := range txtSplit {
 			if strings.Contains(i, "SSH_PORT") {
-				port := strings.TrimLeft(i, "SSH_PORT=")
+				port := strings.TrimPrefix(i, "SSH_PORT=")
 				racOpts = fmt.Sprintf("-AXt -p %v -l", port)
 			} else if strings.Contains(i, "OS_FAMILY") {
 				osFamily := strings.Split(i, "=")
@@ -58,7 +59,7 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 					sudo = ""
 				}
 			} else if strings.Contains(i, "REMOTE_USER") {
-				user := strings.TrimLeft(i, "REMOTE_USER=")
+				user := strings.TrimPrefix(i, "REMOTE_USER=")
 				remoteUser = user
 			}
 		}

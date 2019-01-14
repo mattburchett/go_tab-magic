@@ -28,6 +28,7 @@ func lookupName(fqdn, serverAddr string) (string, error) {
 	return "", errors.New("no A record returned")
 }
 
+// PerformZoneTransfer performs zone transfers and gathers a list from config.Domains
 func PerformZoneTransfer(config config.Config) []string {
 	data := make([]string, 0)
 
@@ -46,7 +47,6 @@ func PerformZoneTransfer(config config.Config) []string {
 				var ip, hostname, txt string
 				switch v := a.(type) {
 				case *dns.TXT:
-					txt = string(v.Txt[0])
 					hostname = v.Hdr.Name
 					cip, err := lookupName(strings.TrimRight(v.Hdr.Name, "."), server)
 					if err != nil || cip == "" {

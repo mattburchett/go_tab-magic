@@ -13,6 +13,8 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 		hostname := splitStrings[0]
 		txt := splitStrings[2]
 
+		useJump := config.UseJump
+
 		jump := config.JumpHost
 		stringSplit := config.SplitString
 
@@ -61,6 +63,10 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 			}
 		}
 
-		fmt.Printf("alias %v=\\'%v%v%v %v@%v \"%v %v %v %v %v\"'\n", host, message, prerac, hop, username, jump, rac, racOpts, remoteUser, fqdn, sudo)
+		if useJump {
+			fmt.Printf("alias %v=\\'%v%v%v %v@%v \"%v %v %v %v %v\"'\n", host, message, prerac, hop, username, jump, rac, racOpts, remoteUser, fqdn, sudo)
+		} else {
+			fmt.Printf("alias %v=\\'%v %v %v %v %v %v\n", host, message, rac, racOpts, remoteUser, fqdn, sudo)
+		}
 	}
 }

@@ -2,8 +2,9 @@ package shell
 
 import (
 	"fmt"
-	"rfi-sower/pkg/utils"
 	"strings"
+
+	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/utils"
 
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
 )

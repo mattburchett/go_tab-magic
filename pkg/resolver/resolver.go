@@ -4,8 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"rfi-sower/pkg/utils"
 	"strings"
+
+	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/utils"
 
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
 	"github.com/miekg/dns"

@@ -12,7 +12,10 @@ import (
 )
 
 // LookupName returns IPv4 address from A record or error.
-func lookupName(fqdn, serverAddr string) (string, error) {
+func lookupName(fqdn, serverAddr string, debug bool) (string, error) {
+	if debug {
+		defer utils.LogElapsedTime("Lookup Name")
+	}
 	m := &dns.Msg{}
 	m.SetQuestion(dns.Fqdn(fqdn), dns.TypeA)
 	in, err := dns.Exchange(m, serverAddr)
@@ -52,7 +55,7 @@ func PerformZoneTransfer(config config.Config, debug bool) []string {
 				switch v := a.(type) {
 				case *dns.TXT:
 					hostname = v.Hdr.Name
-					cip, err := lookupName(strings.TrimRight(v.Hdr.Name, "."), server)
+					cip, err := lookupName(strings.TrimRight(v.Hdr.Name, "."), server, debug)
 					if err != nil || cip == "" {
 						continue
 					}
@@ -61,7 +64,7 @@ func PerformZoneTransfer(config config.Config, debug bool) []string {
 					ip = v.A.String()
 					hostname = v.Hdr.Name
 				case *dns.CNAME:
-					cip, err := lookupName(v.Target, server)
+					cip, err := lookupName(v.Target, server, debug)
 					if err != nil || cip == "" {
 						continue
 					}

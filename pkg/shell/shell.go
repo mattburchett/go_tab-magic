@@ -2,13 +2,17 @@ package shell
 
 import (
 	"fmt"
+	"rfi-sower/pkg/utils"
 	"strings"
 
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
 )
 
 // CreateShellAliases will create shell aliases and fmt.Println them
-func CreateShellAliases(data []string, username string, config config.Config) {
+func CreateShellAliases(data []string, username string, config config.Config, debug bool) {
+	if debug {
+		defer utils.LogElapsedTime("Create Shell Aliases")
+	}
 	for _, i := range data {
 		splitStrings := strings.Split(i, " ")
 		hostname := splitStrings[0]
@@ -63,8 +67,9 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 				remoteUser = user
 			}
 		}
-
-		if useJump {
+		if debug {
+			fmt.Println("Disabled Output due to Debug Mode")
+		} else if useJump {
 			fmt.Printf("alias %v=\\'%v%v%v %v@%v \"%v %v %v %v %v\"'\n", host, message, prerac, hop, username, jump, rac, racOpts, remoteUser, fqdn, sudo)
 		} else {
 			fmt.Printf("alias %v=\\'%v %v %v %v %v %v\n", host, message, rac, racOpts, remoteUser, fqdn, sudo)

@@ -34,5 +34,5 @@ func main() {
 	}
 
 	data := resolver.PerformZoneTransfer(cfg, debug)
-	shell.CreateShellAliases(data, user, cfg)
+	shell.CreateShellAliases(data, user, cfg, debug)
 }

@@ -26,7 +26,7 @@ func CreateShellAliases(data []string, username string, config config.Config) {
 		prerac := ""
 		windowsGeometry := config.WindowsGeometry
 
-		host := strings.TrimRight(hostname, stringSplit)
+		host := strings.TrimSuffix(hostname, stringSplit)
 		fqdn := hostname
 
 		greentext := "tput -T xterm setaf 2; "

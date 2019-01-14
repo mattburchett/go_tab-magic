@@ -4,6 +4,6 @@
     "domains": [ "kc.linuxrocker.com"],
     "jumpHost": "jump01.kc.linuxrocker.com",
     "useJump": false,
-    "splitString": ".linuxrocker",
+    "splitString": ".linuxrocker.com",
     "windowsGeometry": "1600x900"
 }

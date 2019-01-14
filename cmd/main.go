@@ -33,6 +33,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	data := resolver.PerformZoneTransfer(cfg)
+	data := resolver.PerformZoneTransfer(cfg, debug)
 	shell.CreateShellAliases(data, user, cfg)
 }

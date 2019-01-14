@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"rfi-sower/pkg/utils"
 	"strings"
 
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
@@ -29,7 +30,10 @@ func lookupName(fqdn, serverAddr string) (string, error) {
 }
 
 // PerformZoneTransfer performs zone transfers and gathers a list from config.Domains
-func PerformZoneTransfer(config config.Config) []string {
+func PerformZoneTransfer(config config.Config, debug bool) []string {
+	if debug {
+		defer utils.LogElapsedTime("Perform Zone Transfer")
+	}
 	data := make([]string, 0)
 
 	// Do the transfer

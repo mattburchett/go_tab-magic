@@ -1,14 +1,12 @@
 package resolver
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"log"
 	"strings"
 
 	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/config"
-	"git.linuxrocker.com/mattburchett/go_tab-magic/pkg/model"
 	"github.com/miekg/dns"
 )
 
@@ -72,26 +70,6 @@ func PerformZoneTransfer(config config.Config) []string {
 			}
 		}
 	}
-	// fmt.Println(data)
-	// resultsToJSON(data)
 
 	return data
-}
-
-func resultsToJSON(data []string) {
-	jsonData := make([][]byte, 0)
-	for _, i := range data {
-		splitStrings := strings.Split(i, " ")
-		hostname := splitStrings[0]
-		ip := splitStrings[1]
-		txt := splitStrings[2]
-		dns := &model.Results{IP: ip, Hostname: hostname, TXT: txt}
-		b, err := json.Marshal(dns)
-		if err != nil {
-			fmt.Println(err)
-		}
-		jsonData = append(jsonData, b)
-
-	}
-
 }

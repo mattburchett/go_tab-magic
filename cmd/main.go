@@ -10,29 +10,25 @@ import (
 )
 
 func main() {
-	var c string
-	var user string
-	var debug bool
-
-	flag.StringVar(&c, "config", "", "Configuration to load")
-	flag.StringVar(&user, "user", "", "user for aliases")
-	flag.BoolVar(&debug, "debug", false, "Enables Debugging Mode")
+	var c = flag.String("config", "", "Configuration to load")
+	var user = flag.String("user", "", "user for aliases")
+	var debug = flag.Bool("debug", false, "Enables Debugging Mode")
 	flag.Parse()
 
 	// Stop the app if they're missing required flags.
-	if c == "" {
+	if *c == "" {
 		log.Fatal("You need to specify a configuration file.")
 	}
 
-	if user == "" {
+	if *user == "" {
 		log.Fatal("You must specify a username.")
 	}
 
-	cfg, err := config.GetConfig(c, debug)
+	cfg, err := config.GetConfig(*c, *debug)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	data := resolver.PerformZoneTransfer(cfg, debug)
-	shell.CreateShellAliases(data, user, cfg, debug)
+	data := resolver.PerformZoneTransfer(cfg, *debug)
+	shell.CreateShellAliases(data, *user, cfg, *debug)
 }

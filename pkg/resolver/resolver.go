@@ -55,6 +55,7 @@ func PerformZoneTransfer(config config.Config, debug bool) []string {
 				var ip, hostname, txt string
 				switch v := a.(type) {
 				case *dns.TXT:
+					txt = string(v.Txt[0])
 					hostname = v.Hdr.Name
 					cip, err := lookupName(strings.TrimRight(v.Hdr.Name, "."), server, debug)
 					if err != nil || cip == "" {
